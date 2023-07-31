@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="jp" dir="ltr">
+  <script type="text/csv" id="answerdata">
+    織田信長,坂本龍馬,伊達政宗,源義経,福沢諭吉,真田幸村,徳川家康,上杉謙信,武田信玄,野口英世
+  </script>
   <head>
     <meta charset="utf-8" />
     <title>SortableList</title>
@@ -15,7 +18,7 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <div class="text-center"><h2>10 Richest People</h2></div>
+          <div class="text-center"><h2>歴史上の人物ランキング</h2></div>
           <div class="text-center">
             Drag and drop the items into their corresponding spots
           </div>
@@ -54,7 +57,9 @@
                 徳川家康
               </li>
             </ol>
-            <button type="button" class="btn btn-primary">Check Order</button>
+            <button type="button" class="btn btn-primary" id="orderbutton">
+              Check Order
+            </button>
           </div>
         </div>
       </div>

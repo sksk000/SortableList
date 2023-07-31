@@ -1,9 +1,9 @@
 var dragitem;
-var parent = document.getElementById("listparent");
-
-var listitems = document.querySelectorAll("#dragitem");
 var dragStartIndex;
 var dragEndIndex;
+var parent = document.getElementById("listparent");
+var listitems = document.querySelectorAll("#dragitem");
+var orderbutton = document.getElementById("orderbutton");
 
 listitems.forEach((e) => {
   //ドラック開始
@@ -34,11 +34,6 @@ listitems.forEach((e) => {
   //ドロップ可能エリアから離れる
   e.addEventListener("dragleave", (e) => {
     e.target.style.background = "#ffffff";
-  });
-
-  //ドラックが終了
-  e.addEventListener("dragend", (e) => {
-    e.target.style.color = "#2b2b2b";
   });
 
   //ドロップしたとき
@@ -98,4 +93,30 @@ listitems.forEach((e) => {
     // 格納している変数を初期化
     dragitem = null;
   });
+});
+
+//正解データがあるCSVを読み込む
+//CSVのデータを読む
+
+//データをCSVから取得
+var csvdata = document.getElementById("answerdata").textContent.trim();
+var splitdata = csvdata.split(",");
+var answerdata = new Array();
+
+//CSVデータを配列に格納
+for (var j = 0; j < csvdata.length; ++j) {
+  if (splitdata[j]) {
+    answerdata.push(splitdata[j]);
+  }
+}
+
+orderbutton.addEventListener("click", function () {
+  for (var i = 0; i < listitems.length; ++i) {
+    var data = listitems[i].textContent;
+    if (data.trim() == answerdata[i]) {
+      listitems[i].style.color = "#008000";
+    } else {
+      listitems[i].style.color = "#FF0000";
+    }
+  }
 });
