@@ -2,7 +2,7 @@
 <html lang="jp" dir="ltr">
   <head>
     <meta charset="utf-8" />
-    <title>Form Validator</title>
+    <title>SortableList</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -22,17 +22,37 @@
         </div>
         <div class="row">
           <div class="col">
-            <ol class="list-group list-group-numbered">
-              <li class="list-group-item">坂本龍馬</li>
-              <li class="list-group-item">福沢諭吉</li>
-              <li class="list-group-item">武田信玄</li>
-              <li class="list-group-item">伊能忠敬</li>
-              <li class="list-group-item">伊達政宗</li>
-              <li class="list-group-item">織田信長</li>
-              <li class="list-group-item">源義経</li>
-              <li class="list-group-item">真田幸村</li>
-              <li class="list-group-item">上杉謙信</li>
-              <li class="list-group-item">徳川家康</li>
+            <ol class="list-group list-group-numbered" id="listparent">
+              <li class="list-group-item" id="dragitem" draggable="true">
+                坂本龍馬
+              </li>
+              <li class="list-group-item" id="dragitem" draggable="true">
+                福沢諭吉
+              </li>
+              <li class="list-group-item" id="dragitem" draggable="true">
+                武田信玄
+              </li>
+              <li class="list-group-item" id="dragitem" draggable="true">
+                野口英世
+              </li>
+              <li class="list-group-item" id="dragitem" draggable="true">
+                伊達政宗
+              </li>
+              <li class="list-group-item" id="dragitem" draggable="true">
+                織田信長
+              </li>
+              <li class="list-group-item" id="dragitem" draggable="true">
+                源義経
+              </li>
+              <li class="list-group-item" id="dragitem" draggable="true">
+                真田幸村
+              </li>
+              <li class="list-group-item" id="dragitem" draggable="true">
+                上杉謙信
+              </li>
+              <li class="list-group-item" id="dragitem" draggable="true">
+                徳川家康
+              </li>
             </ol>
             <button type="button" class="btn btn-primary">Check Order</button>
           </div>
