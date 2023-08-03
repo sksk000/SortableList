@@ -1,25 +1,23 @@
-var dragitem;
 var dragStartIndex;
 var dragEndIndex;
-var parent = document.getElementById("listparent");
 var listitems = document.querySelectorAll("#dragitem");
 var orderbutton = document.getElementById("orderbutton");
 
 listitems.forEach((e) => {
   //ドラック開始
   e.addEventListener("dragstart", () => {
-    dragitem = e.target;
-
     //何番目の要素をドラックしているか
     dragStartIndex = [].slice.call(listitems).indexOf(e);
   });
 
-  //ドラック中
-  e.addEventListener("drag", function () {});
-
   //ドロップ可能エリアに侵入したとき
   e.addEventListener("dragenter", (e) => {
-    e.target.style.background = "#a9a9a9";
+    if (e.target.id != "dragitem") {
+      e.target.parentNode.parentNode.style.background = "#a9a9a9";
+      //e.target.parentNode
+    } else {
+      e.target.parentNode.style.background = "#a9a9a9";
+    }
   });
 
   //ドロップ可能エリア内
@@ -33,65 +31,43 @@ listitems.forEach((e) => {
   );
   //ドロップ可能エリアから離れる
   e.addEventListener("dragleave", (e) => {
-    e.target.style.background = "#ffffff";
+    if (e.target.id != "dragitem") {
+      e.target.parentNode.parentNode.style.background = "#ffffff";
+    } else {
+      e.target.parentNode.style.background = "#ffffff";
+    }
   });
 
   //ドロップしたとき
   e.addEventListener("drop", (e) => {
-    e.target.style.background = "#ffffff";
+    if (e.target.id != "dragitem") {
+      e.target.parentNode.parentNode.style.background = "#ffffff";
+    } else {
+      e.target.parentNode.style.background = "#ffffff";
+    }
 
-    dragEndIndex = [].slice.call(listitems).indexOf(e.target);
+    var targetitem;
+    //持っている要素がdragitemかどうか確認(dragitemの子要素もあるので確認している)
+    if (e.target.id != "dragitem") {
+      targetitem = e.target.parentNode;
+    } else {
+      targetitem = e.target;
+    }
+
+    dragEndIndex = [].slice.call(listitems).indexOf(targetitem);
 
     console.log("StartIndex:" + dragStartIndex);
     console.log("EndIndex:" + dragEndIndex);
 
-    if (dragStartIndex == 0) {
-      //StartIndexの要素をEndIndexの要素の前に挿入する
-      parent.insertBefore(listitems[dragStartIndex], listitems[dragEndIndex]);
+    //開始場所と終了場所の親を保存
+    var endparent = listitems[dragEndIndex].parentNode;
+    var startparent = listitems[dragStartIndex].parentNode;
 
-      //EndIndexの要素をList要素の一番最初に挿入する
-      parent.prepend(listitems[dragEndIndex]);
-    } else if (dragStartIndex == listitems.length - 1) {
-      //StartIndexの要素をEndIndexの要素の前に挿入する
-      parent.insertBefore(listitems[dragStartIndex], listitems[dragEndIndex]);
+    //最初のものは最後に、最後のものは最初に入れる
+    endparent.insertBefore(listitems[dragStartIndex], null);
+    startparent.insertBefore(listitems[dragEndIndex], null);
 
-      //EndIndexの要素をList要素の一番うしろに挿入する
-      parent.appendChild(listitems[dragEndIndex]);
-    } else if (dragEndIndex == listitems.length - 1 && dragStartIndex > 0) {
-      //EndIndexの要素をStartIndex要素の前に挿入する
-      parent.insertBefore(listitems[dragEndIndex], listitems[dragStartIndex]);
-
-      //StartIndex要素をList要素の一番うしろに挿入する
-      parent.appendChild(listitems[dragStartIndex]);
-    } else {
-      //StartとEndどちらかが端っこ以外の場合
-      if (dragStartIndex > dragEndIndex) {
-        //StartIndexの要素をEndIndexの前に挿入
-        parent.insertBefore(listitems[dragStartIndex], listitems[dragEndIndex]);
-
-        //EndIndexの要素をStartIndex+1の要素前に挿入
-        parent.insertBefore(
-          listitems[dragEndIndex],
-          listitems[dragStartIndex + 1]
-        );
-      } else {
-        //StartIndexの要素をEndIndex+1要素前に挿入
-        parent.insertBefore(
-          listitems[dragStartIndex],
-          listitems[dragEndIndex + 1]
-        );
-        //EndIndexの要素をStartIndex+1要素前に挿入
-        parent.insertBefore(
-          listitems[dragEndIndex],
-          listitems[dragStartIndex + 1]
-        );
-      }
-    }
-
-    //要素の順番が変更されているので取り直す必要がある
     listitems = document.querySelectorAll("#dragitem");
-    // 格納している変数を初期化
-    dragitem = null;
   });
 });
 
@@ -102,6 +78,7 @@ listitems.forEach((e) => {
 var csvdata = document.getElementById("answerdata").textContent.trim();
 var splitdata = csvdata.split(",");
 var answerdata = new Array();
+var parsonnames = document.querySelectorAll("#personname");
 
 //CSVデータを配列に格納
 for (var j = 0; j < csvdata.length; ++j) {
@@ -111,12 +88,16 @@ for (var j = 0; j < csvdata.length; ++j) {
 }
 
 orderbutton.addEventListener("click", function () {
-  for (var i = 0; i < listitems.length; ++i) {
-    var data = listitems[i].textContent;
-    if (data.trim() == answerdata[i]) {
-      listitems[i].style.color = "#008000";
+  //最新の情報を取得する(位置が変わっている為)
+  parsonnames = document.querySelectorAll("#personname");
+
+  //CSVの情報を照合して合っていれば文字の色を変更する
+  for (var i = 0; i < parsonnames.length; ++i) {
+    var data = parsonnames[i].textContent;
+    if (data == answerdata[i]) {
+      parsonnames[i].parentNode.parentNode.style.color = "#008000";
     } else {
-      listitems[i].style.color = "#FF0000";
+      parsonnames[i].parentNode.parentNode.style.color = "#FF0000";
     }
   }
 });
