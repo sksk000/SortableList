@@ -18,6 +18,8 @@ https://vanillawebprojects.com/projects/sortable-list/
 
 ## 実行方法
 ### Github上で確認する場合
+以下のURLにアクセスすると確認できます。
+https://sksk000.github.io/SortableList/
 ### リポジトリを取得する場合
 1. git cloneコマンドを使用し、https://github.com/sksk000/SortableList.git を指定して任意のフォルダにリポジトリを取得します。
 2. 任意のフォルダ\SortableList\html内にあるmain.htmlを開くと実行することができます。
