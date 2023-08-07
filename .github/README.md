@@ -1,13 +1,17 @@
 # SortableList
+- HTML/CSS/Javascriptを勉強するため、[vanillawebprojects](https://vanillawebprojects.com/)にあるサイトを模写しました。
+- お金を持っている人を1~10位の中から順番に並び替えを行います。
 ## デモ
 ![SortableList](https://github.com/sksk000/SortableList/assets/137740372/a572454b-5ce6-4218-b58f-5efdfdb2164b)
 
-## 概要
-以下のページをを模倣し、言語やライブラリの学習の為に作成致しました。
-
-### 模倣したページ
+## 模写　元ページ
 https://vanillawebprojects.com/projects/sortable-list/
 
+## 実装機能
+- List要素を並び替える機能
+  - List要素をドラックアンドドロップを行えるようにし、要素同士を並び替えることができるようになります。
+- 全List要素の順位があっているかどうか確認する機能
+  - 一番下にあるCheckOrderをクリックすると、1~10位にあるList要素を全チェックし順位があっていれば文字が緑色、間違っていれば文字が赤文字になります。
 ## 使用言語・使用ライブラリ
 ### 言語
 - Javascript
@@ -16,23 +20,6 @@ https://vanillawebprojects.com/projects/sortable-list/
 ### 使用ライブラリ
 - bootstrap@5.3.0
 
-## 実行方法
-### Github上で確認する場合
-以下のURLにアクセスすると確認できます。
-https://sksk000.github.io/SortableList/
-### リポジトリを取得する場合
-1. git cloneコマンドを使用し、https://github.com/sksk000/SortableList.git を指定して任意のフォルダにリポジトリを取得します。
-2. 任意のフォルダ\SortableList\html内にあるmain.htmlを開くと実行することができます。
-3. デモのような画面が表示されることが確認できます。
-
-## 使用方法
-一番裕福な人から順番に1~10位の中から並び替えるものになっております。
-
-- ドラックアンドドロップで要素を並び替えることが可能です。
-![SortableList_1](https://github.com/sksk000/SortableList/assets/137740372/97608078-39f7-430e-97a6-990b04d62cc8)
-
-- 並び替えたら、一番下にあるCheckOrderボタンを押すと順位があっているかどうかチェックすることができます。文字が赤だと不正解、緑だと正解となります。
-![SortableList_2](https://github.com/sksk000/SortableList/assets/137740372/b3298bc7-6032-48dc-97ed-2cecca8881b7)
-
-
+## Github Pages URL
+- https://sksk000.github.io/SortableList/
 
